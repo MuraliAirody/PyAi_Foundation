@@ -1,10 +1,22 @@
-## What is NumPy?
-NumPy (Numerical Python) is the foundation library for numerical computing in Python.
-mainly used for scientific computing,linear algibra, machinelearning
+# NumPy Complete Notes
 
-##### It provides:
-- Fast array operations (much faster than Python lists)
-- Mathematical functions
-- Linear algebra
-- Statistics
-- Random number generation
+NumPy (**Numerical Python**) is the core library for scientific and numerical computing in Python.  
+It provides fast array operations and supports multi-dimensional data.
+
+---
+
+## ✅ Why NumPy?
+
+- Much faster than Python lists  
+- Supports vectors, matrices & tensors  
+- Built-in mathematical & statistical functions  
+- Supports linear algebra, Fourier transform  
+- Powerful slicing/broadcasting features  
+- Used heavily in **Machine Learning**, **AI**, **Deep Learning**, **Data Science**
+
+---
+
+# 1Installing & Importing NumPy
+
+```python
+pip install numpy
