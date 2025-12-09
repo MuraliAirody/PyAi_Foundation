@@ -132,3 +132,122 @@ print(np.multiply(a, b))
 print(np.divide(a, b))
 # Same as: a / b
 # Returns floating-point results
+
+
+# -----------------------------------------------
+# SQUARE & SQUARE ROOT (ufuncs)
+# -----------------------------------------------
+
+print(np.square(nums))  
+# np.square → squares each element (element-wise)
+# Same as nums * nums
+
+print(np.sqrt(nums))
+# np.sqrt → square root of each element (element-wise)
+
+
+# -----------------------------------------------
+# INDEXING & SLICING
+# -----------------------------------------------
+
+# nums = square of numbers 0 to 4 → [0, 1, 4, 9, 16]
+nums = np.arange(5) ** 2
+print(nums)
+
+# Accessing 3rd element → index 2
+print(nums[2])   # Output: 4
+
+# Slicing from index 1 to 3 (4 is excluded)
+print(nums[1:4])  # Output: [1, 4, 9]
+
+
+# -----------------------------------------------
+# 2D ARRAY INDEXING
+# -----------------------------------------------
+
+a = np.arange(12).reshape(4, 3)
+print(a)
+# a =
+# [[ 0  1  2]
+#  [ 3  4  5]
+#  [ 6  7  8]
+#  [ 9 10 11]]
+
+print(a[2][1])
+# a[2] → third row → [6, 7, 8]
+# a[2][1] → second element → 7
+
+print(a[1][1:])
+# a[1] → second row → [3, 4, 5]
+# [1:] → from index 1 to end
+# Output → [4, 5]
+
+
+# -----------------------------------------------
+# PART OF A MATRIX (IMPORTANT!)
+# -----------------------------------------------
+
+b = np.arange(24).reshape(6, 4)
+print(b)
+# b =
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]
+#  [12 13 14 15]
+#  [16 17 18 19]
+#  [20 21 22 23]]
+
+
+# ❌ WRONG WAY: b[2:4][1:3]
+print(b[2:4][1:3])
+
+# Why wrong?
+# - b[2:4] → gives a NEW array:
+#   [[ 8  9 10 11]
+#    [12 13 14 15]]
+#
+# - Now [1:3] runs on THIS new array, not original
+# So it takes rows 1 to 2 from the sliced result:
+# Output → [[12 13 14 15]]
+#
+# This is NOT the intended [(rows 2-3), (cols 1-2)] slice.
+
+
+# ✅ CORRECT WAY: Use comma notation
+print(b[2:4, 1:3])
+# This means:
+# rows 2 to 3 → [ [8 9 10 11], [12 13 14 15] ]
+# columns 1 to 2 → values from index 1 & 2
+#
+# Output:
+# [[ 9 10]
+#  [13 14]]
+
+
+# -----------------------------------------------
+# STEP SLICING
+# -----------------------------------------------
+
+# b[::3, ::3]
+print(b[::3, ::3])
+# ::3 → step of 3
+# Picks every 3rd row and 3rd column
+#
+# Selected rows: 0, 3
+# Selected cols: 0, 3
+#
+# Output:
+# [[ 0  3]
+#  [12 15]]
+
+# Reverse stepping
+print(b[::-3, ::-3])
+# Row: ::-3 → reverse, pick every 3rd row from bottom
+# Col: ::-3 → reverse, pick every 3rd col from right
+#
+# Rows picked: 5, 2
+# Columns picked: 3, 0
+#
+# Output:
+# [[23 20]
+#  [11  8]]
