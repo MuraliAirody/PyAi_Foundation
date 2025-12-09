@@ -5,7 +5,7 @@ It provides fast array operations and supports multi-dimensional data.
 
 ---
 
-## ✅ Why NumPy?
+## Why NumPy?
 
 - Much faster than Python lists  
 - Supports vectors, matrices & tensors  
@@ -16,7 +16,13 @@ It provides fast array operations and supports multi-dimensional data.
 
 ---
 
-# 1Installing & Importing NumPy
+# Installing & Importing NumPy
 
 ```python
 pip install numpy
+```
+
+```python
+import numpy as np
+dir(np)
+```
