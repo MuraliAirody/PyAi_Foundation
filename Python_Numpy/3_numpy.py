@@ -251,3 +251,80 @@ print(b[::-3, ::-3])
 # Output:
 # [[23 20]
 #  [11  8]]
+
+
+
+
+c = np.arange(15)   # Creates array from 0 to 14 → total 15 elements
+print(c)
+# Output: [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14]
+
+
+# ----------------------------------------------------
+# 1️⃣ Split array into equal parts
+# ----------------------------------------------------
+
+print(np.split(c, 3))
+# Splits c into 3 equal parts
+# 15 elements / 3 = 5 elements each
+# Output:
+# [array([0,1,2,3,4]),
+#  array([5,6,7,8,9]),
+#  array([10,11,12,13,14])]
+
+
+print(np.split(c, 5))
+# Splits c into 5 equal parts
+# 15 elements / 5 = 3 elements each
+# Output:
+# [array([0,1,2]),
+#  array([3,4,5]),
+#  array([6,7,8]),
+#  array([9,10,11]),
+#  array([12,13,14])]
+
+
+# ❌ This will NOT work:
+# np.split(c, 4)
+# Because 15 elements cannot be split into 4 equal parts
+# It raises:
+# ValueError: array split does not result in an equal division
+
+
+# ----------------------------------------------------
+# 2️⃣ Split array using indices
+# ----------------------------------------------------
+# Here, you specify **split positions**, not number of parts.
+
+print(np.split(c, [2, 4, 5]))
+# Splits at indices: 2, 4, 5
+#
+# Breakpoints:   [2, 4, 5]
+# Means:
+#  c[0:2]   → [0,1]
+#  c[2:4]   → [2,3]
+#  c[4:5]   → [4]
+#  c[5:]    → [5,6,7,8,9,10,11,12,13,14]
+#
+# Output:
+# [array([0,1]),
+#  array([2,3]),
+#  array([4]),
+#  array([...remaining elements...])]
+
+
+print(np.split(c, [0, 4, 8, 11]))
+# Breakpoints: 0, 4, 8, 11
+#
+# 1. c[0:0] → empty array []
+# 2. c[0:4] → [0,1,2,3]
+# 3. c[4:8] → [4,5,6,7]
+# 4. c[8:11] → [8,9,10]
+# 5. c[11:] → [11,12,13,14]
+#
+# Output:
+# [array([]),
+#  array([0,1,2,3]),
+#  array([4,5,6,7]),
+#  array([8,9,10]),
+#  array([11,12,13,14])]
