@@ -112,3 +112,110 @@ print(cricketers_series.sort_values())
 print(cricketers_series.sort_values(ascending=False))
 
 # -----------------------------------------------------------------------------------------------------------------------------
+
+#Data Frame
+# -------------------------------------------------------------
+# 1. Reading tabular data using pandas
+# -------------------------------------------------------------
+
+# Load data from CSV file.
+# No extra library is needed for CSV files.
+data_from_csv = pd.read_csv("Datasets/datasets/apple_stocks.csv")
+print(data_from_csv)
+
+# Load data from Excel file.
+# Requires 'openpyxl' library installed.
+data_from_excel = pd.read_excel("Datasets/datasets/automobile_camera.xlsx")
+print(data_from_excel)
+
+
+# -------------------------------------------------------------
+# 2. Creating a DataFrame using a dictionary
+# -------------------------------------------------------------
+
+# Each key represents a column name,
+# and each list represents column values.
+# All lists must be of equal length.
+df_dict = {
+    'Year' : [1990, 1994, 1998, 2002],
+    'Country' : ['Italy', 'USA', 'France', 'Japan'],
+    'Winner' : ['Germany', 'Brazil', 'France', 'Brazil'],
+    'GoalScored' : [115, 141, 171, 161]
+}
+
+print(pd.DataFrame(df_dict))
+
+
+# -------------------------------------------------------------
+# 3. Error demonstration using try–except
+# -------------------------------------------------------------
+
+try:
+    # Here columns have unequal lengths.
+    # 'GoalScored' has only 3 values, others have 4.
+    # This will raise a ValueError.
+    df_dict = {
+        'Year' : [1990, 1994, 1998, 2002],
+        'Country' : ['Italy', 'USA', 'France', 'Japan'],
+        'Winner' : ['Germany', 'Brazil', 'France', 'Brazil'],
+        'GoalScored' : [115, 141, 171]   # Mismatch
+    }
+
+    pd.DataFrame(df_dict)   # Error occurs here
+except Exception as e:
+    print(e)  # Print the exception message
+
+
+# -------------------------------------------------------------
+# 4. Creating DataFrame from Series
+# -------------------------------------------------------------
+
+# When creating a DataFrame using Series:
+# - Series can have unequal lengths.
+# - Missing values will be filled with NaN.
+df_dict_udindex = {
+    'Winner' : pd.Series(['Germany', 'Brazil', 'France']),
+    'GoalScored' : pd.Series([115, 141, 171, 161])
+}
+
+print(pd.DataFrame(df_dict_udindex))
+
+
+# -------------------------------------------------------------
+# 5. Creating DataFrame from a list of tuples
+# -------------------------------------------------------------
+
+# Each tuple represents one row of the table.
+df_lotuples = [
+    (2002, 'Japan', 'Brazil', 161),
+    (2006, 'Germany', 'Italy', 147),
+    (2010, 'South Africa', 'Spain', 145),
+    (2014, 'Brazil', 'Germany', 171)
+]
+
+# If no column names specified, pandas uses default numeric columns.
+print(pd.DataFrame(df_lotuples))
+
+# Same data but with column names provided.
+fifa_df_lotuples = pd.DataFrame(
+    df_lotuples,
+    columns=["Year", "HostCountry", "Winner", "GoalScored"]
+)
+
+print(fifa_df_lotuples)
+
+
+# -------------------------------------------------------------
+# 6. Creating DataFrame from a list of dictionaries
+# -------------------------------------------------------------
+
+# Each dictionary represents a row.
+# Keys become column names.
+df_lodict = [
+    {'year' : 2002, 'HostCountry' : 'Japan', 'Winner' : 'Brazil'},
+    {'year' : 2006, 'HostCountry' : 'Germany', 'Winner' : 'Italy'},
+    {'year' : 2010, 'HostCountry' : 'South Africa', 'Winner' : 'Spain'},
+    {'year' : 2014, 'HostCountry' : 'Brazil', 'Winner' : 'Germany'},
+]
+
+print(pd.DataFrame(df_lodict))
