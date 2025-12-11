@@ -119,3 +119,72 @@ print(np.hsplit(arr_two, 2))
 print(np.vsplit(arr_two, 2))
 # vsplit → split along rows (axis=0)
 # Equivalent to: np.split(arr_two, 2, axis=0)
+
+# ------------------------------------------------------------------------------------------------------------------------
+
+
+
+a = np.array([['a','b'],['c','d']])
+b = np.array([['e','f'],['g','h']])
+
+# ------------------------------------------------------------
+# CONCATENATE HORIZONTALLY (axis = 1)
+# ------------------------------------------------------------
+print(np.concatenate((a, b), axis=1))
+# axis=1 → join columns
+# Both arrays must have SAME number of rows
+# Output:
+# [['a' 'b' 'e' 'f']
+#  ['c' 'd' 'g' 'h']]
+
+
+# ------------------------------------------------------------
+# CONCATENATE VERTICALLY (axis = 0)
+# ------------------------------------------------------------
+print(np.concatenate((a, b), axis=0))
+# axis=0 → join rows
+# Both arrays must have SAME number of columns
+# Output:
+# [['a' 'b']
+#  ['c' 'd']
+#  ['e' 'f']
+#  ['g' 'h']]
+
+
+# ------------------------------------------------------------
+# HSTACK and VSTACK
+# ------------------------------------------------------------
+print(np.hstack((a, b)))
+# hstack = horizontal = axis=1
+# Must have same number of rows
+
+print(np.vstack((a, b)))
+# vstack = vertical = axis=0
+# Must have same number of columns
+
+
+# ------------------------------------------------------------
+# Another example
+# ------------------------------------------------------------
+c = np.array([['a','b','A'],['c','d','C']])
+d = np.array([['e','f'],['g','h']])
+
+print(np.concatenate((c, d), axis=0))
+# Vertical join → allowed
+# c has 3 columns, d has 2 columns → BUT vertical joining only requires:
+# SAME number of columns? No.
+# Numpy will pad the smaller? No.  
+# Actually this will raise an ERROR:
+# ValueError: all the input array dimensions except for the concatenation axis must match
+
+# c: shape (2,3)
+# d: shape (2,2)
+# Columns mismatch → cannot concatenate vertically without reshaping.
+
+
+print(np.concatenate((c, d), axis=1))
+# Horizontal join
+# Requirement: SAME number of rows → both have 2 rows → OK.
+# Output:
+# [['a' 'b' 'A' 'e' 'f']
+#  ['c' 'd' 'C' 'g' 'h']]
