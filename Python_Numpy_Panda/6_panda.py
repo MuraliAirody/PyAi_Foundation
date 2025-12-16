@@ -132,6 +132,9 @@ bike = pd.read_csv("Datasets/datasets/citibike_tripdata.csv")
 print(bike.head(5))
 
 
+
+
+
 # ----------------------------------------------------
 # Column Selection
 # ----------------------------------------------------
@@ -160,8 +163,17 @@ print(bike[["tripduration", "bikeid", "usertype"]])
 # This is label-based and very fast for single value lookup
 print(bike.at[1, "bikeid"])
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# ----------------------------------------------------
+'''
+zero-based indexing and inclusive/exclusive behavior:
+Zero-based (positional) indexing:
+In zero-based indexing, indexing starts from 0, slicing is position-based, the start index is inclusive, and the end index is exclusive.
+Custom (label-based) indexing:
+In custom or label-based indexing, selection is done using index labels rather than positions, and slicing is inclusive of both the start and end labels.
+'''
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Slicing (Row Selection)
 # ----------------------------------------------------
 # Pandas supports slicing rows similar to Python lists
@@ -198,3 +210,36 @@ print(new_bike_share[0:5])
 # Label-based slicing using custom index
 # End label IS INCLUSIVE in label-based slicing
 print(new_bike_share["ind_1":"ind_5"])
+
+
+
+## ----------------------------------------------------
+# .loc → Label-based selection
+# ----------------------------------------------------
+# .loc can extract BOTH rows and columns
+# It works ONLY with LABELS (not positions)
+#
+# Syntax:
+# df.loc[row_start : row_end , column_start : column_end]
+#
+# IMPORTANT RULES:
+# 1. Both row_end and column_end are INCLUSIVE
+# 2. Works with default index as well as custom index
+# 3. Step value is NOT supported in .loc slicing
+# ----------------------------------------------------
+
+# Select rows from 'ind_1' to 'ind_3' (inclusive)
+# Select columns from 'tripduration' to 'bikeid' (inclusive)
+print(new_bike_share.loc["ind_1":"ind_3", "tripduration":"bikeid"])
+
+
+# ----------------------------------------------------
+# Using .loc with default integer index
+# ----------------------------------------------------
+# Even though numbers are used, .loc still treats them as LABELS
+# NOT as positional indexes
+#
+# This will select rows with index labels 1, 2, 3, and 4
+print(bike.loc[1:4])
+
+
