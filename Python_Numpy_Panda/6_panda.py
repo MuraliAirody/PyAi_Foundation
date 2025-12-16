@@ -176,7 +176,7 @@ In custom or label-based indexing, selection is done using index labels rather t
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Slicing (Row Selection)
 # ----------------------------------------------------
-# Pandas supports slicing rows similar to Python lists
+## Pandas supports slicing rows similar to Python lists
 
 # ----------------------------------------------------
 # Slice rows using positional indexing
@@ -243,3 +243,29 @@ print(new_bike_share.loc["ind_1":"ind_3", "tripduration":"bikeid"])
 print(bike.loc[1:4])
 
 
+# ----------------------------------------------------
+# .iloc → Integer-location based indexing
+# ----------------------------------------------------
+# .iloc is used for selecting rows and columns by
+# their INTEGER POSITIONS (not labels).
+#
+# Key rules:
+# - Uses ONLY zero-based indexing
+# - Works with row and column positions
+# - Start index is INCLUSIVE
+# - End index is EXCLUSIVE
+# - Step value IS supported
+#
+# Syntax:
+# df.iloc[row_start : row_end : row_step,
+#         col_start : col_end : col_step]
+# ----------------------------------------------------
+
+# Select rows with positions 1 and 2
+# (row_end = 3 is excluded)
+#
+# Select columns starting from position 0 up to 9
+# (column_end = 10 is excluded)
+#
+# Select every 2nd column using step = 2
+print(new_bike_share.iloc[1:3, 0:10:2])
