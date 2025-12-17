@@ -171,3 +171,75 @@ del df_org["Headquater"]
 
 # Print the DataFrame after deletion
 print(df_org)
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------
+# Addition and Deletion of Rows in a DataFrame
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Load the CSV file into a DataFrame (data is loaded into memory)
+df_org = pd.read_csv("Datasets/datasets/international_org.csv")
+
+# Print the original DataFrame
+print(df_org)
+
+
+# --------------------------------------------------------------------
+# Adding NEW rows using .loc
+# --------------------------------------------------------------------
+
+# Add a new row with index label 6
+# When assigning a scalar value, pandas fills ALL columns with that value
+df_org.loc[6] = "new_value"
+print(df_org)
+
+# Add another new row with index label 7
+# Values must be provided for ALL columns in the DataFrame
+# Empty string "" is treated as a valid value (not NaN)
+df_org.loc[7] = ["new_value1", ""]
+print(df_org)
+
+
+# --------------------------------------------------------------------
+# Replacing an EXISTING row
+# --------------------------------------------------------------------
+
+# Replace values of the row with index label 2
+# This overwrites the existing row completely
+df_org.loc[2] = ["replace_1", "replace_2"]
+print(df_org)
+
+
+# --------------------------------------------------------------------
+# Deleting rows using drop()
+# --------------------------------------------------------------------
+
+# drop() removes rows by index label
+# inplace=False (default) → returns a NEW DataFrame
+# The original df_org remains unchanged
+print(df_org.drop(index=[2, 7]))
+
+# Delete rows with index labels 1 and 2 from the ORIGINAL DataFrame
+# inplace=True → modifies df_org directly
+df_org.drop(index=[1, 2], inplace=True)
+
+# Print DataFrame after deletion
+print(df_org)
+
+
+# --------------------------------------------------------------------
+# Difference between .iloc and .loc after row deletion
+# --------------------------------------------------------------------
+
+try:
+    # .iloc uses POSITIONAL indexing (zero-based)
+    # Row at position 1 still exists even if index labels are missing
+    print(df_org.iloc[[1]])
+
+    # .loc uses LABEL-based indexing
+    # Index label '1' was deleted earlier, so this raises KeyError
+    print(df_org.loc[1])
+
+except Exception as e:
+    print(f"exception {e}")
