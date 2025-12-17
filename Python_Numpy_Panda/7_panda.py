@@ -307,4 +307,58 @@ print(df_sort.reset_index())
 print(df_sort.reset_index(drop=True))
 
 
+# ------------------------------------------------------------------------------------------------------------------------------------
+# Concatenation in pandas
+# ----------------------
+# pd.concat() is used to combine DataFrames either row-wise (default, axis=0)
+# or column-wise (axis=1).
+
+
+# Creating a DataFrame for India weather data
+india_weather = pd.DataFrame({
+    "city": ["Mumbai", "Delhi", "Banaglore"],
+    "temp": [30, 32, 22],
+    "humidity": [70, 60, 40]
+})
+
+# Creating a DataFrame for US weather data
+us_weather = pd.DataFrame({
+    "city": ["NewYork", "Chicago", "Orlando"],
+    "temp": [21, 14, 22],
+    "humidity": [68, 75, 55]
+})
+
+# Printing individual DataFrames
+print(india_weather)
+print(us_weather)
+
+# ---------------------------------------
+# Basic concatenation (row-wise)
+# ---------------------------------------
+# This stacks us_weather below india_weather.
+# Index values from original DataFrames are preserved.
+print(pd.concat([india_weather, us_weather]))
+
+# ---------------------------------------
+# Concatenation with ignore_index=True
+# ---------------------------------------
+# ignore_index=True resets the index and creates a new continuous index.
+print(pd.concat([india_weather, us_weather], ignore_index=True))
+
+# ---------------------------------------
+# Concatenation with keys
+# ---------------------------------------
+# keys create a MultiIndex (hierarchical index).
+# 'india' and 'us' become the outer index labels.
+print(pd.concat([india_weather, us_weather], keys=["india", "us"]))
+
+# Storing the concatenated DataFrame with keys
+df_weather = pd.concat([india_weather, us_weather], keys=["india", "us"])
+
+# ---------------------------------------
+# Accessing data using .loc with MultiIndex
+# ---------------------------------------
+# This returns all rows belonging to the 'india' key.
+print(df_weather.loc["india"])
+
 
