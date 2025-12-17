@@ -362,3 +362,76 @@ df_weather = pd.concat([india_weather, us_weather], keys=["india", "us"])
 print(df_weather.loc["india"])
 
 
+
+# ------------------------------------------------------------------------------------------------------------------------
+# Merge in pandas
+# ---------------
+# pd.merge() is used to combine two DataFrames based on one or more common columns.
+# It works similar to SQL JOIN operations.
+
+"""
+Conditions for merging:
+1. There must be at least two DataFrames.
+2. At least one column should be common between the DataFrames
+   (or explicitly specified using 'on', 'left_on', 'right_on').
+"""
+
+# First weather DataFrame
+weather_1 = pd.DataFrame({
+    "city": ["NewYork", "LOS", "Austin", "Chicago"],
+    "temp": [30, 32, 22, 29],
+    "humidity": [70, 60, 40, 45]
+})
+
+# Second weather DataFrame
+weather_2 = pd.DataFrame({
+    "city": ["NewYork", "Chicago", "Orlando"],
+    "temp": [30, 29, 22],
+    "humidity": [68, 75, 55]
+})
+
+# Displaying the input DataFrames
+print(weather_1)
+print(weather_2)
+
+# -------------------------------------------------
+# INNER JOIN
+# -------------------------------------------------
+# Returns only rows where the 'city' value exists in BOTH DataFrames.
+# Common cities here: NewYork, Chicago
+print(pd.merge(weather_1, weather_2, how="inner", on="city"))
+
+# -------------------------------------------------
+# LEFT JOIN
+# -------------------------------------------------
+# Returns all rows from the LEFT DataFrame (weather_1).
+# Matching rows from weather_2 are added.
+# If no match is found, NaN is filled for right-side columns.
+print(pd.merge(weather_1, weather_2, how="left", on="city"))
+
+# -------------------------------------------------
+# RIGHT JOIN
+# -------------------------------------------------
+# Returns all rows from the RIGHT DataFrame (weather_2).
+# Matching rows from weather_1 are added.
+# If no match is found, NaN is filled for left-side columns.
+print(pd.merge(weather_1, weather_2, how="right", on="city"))
+
+# -------------------------------------------------
+# OUTER JOIN
+# -------------------------------------------------
+# Returns all rows from BOTH DataFrames.
+# Non-matching rows from either side will have NaN values.
+print(pd.merge(weather_1, weather_2, how="outer", on="city"))
+
+# -------------------------------------------------
+# OUTER JOIN with indicator=True
+# -------------------------------------------------
+# Adds an extra column '_merge' to show the source of each row:
+# - 'left_only'  : row exists only in weather_1
+# - 'right_only' : row exists only in weather_2
+# - 'both'       : row exists in both DataFrames
+print(pd.merge(weather_1, weather_2, how="outer", on="city", indicator=True))
+
+
+
