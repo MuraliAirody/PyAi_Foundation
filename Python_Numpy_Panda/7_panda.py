@@ -243,3 +243,68 @@ try:
 
 except Exception as e:
     print(f"exception {e}")
+
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Sorting Data in a DataFrame
+# ----------------------------------------------------
+
+# Load the CSV file containing unsorted IMDb ratings
+df_sort = pd.read_csv("Datasets/datasets/unsorted_imdb_rating.csv")
+
+# Print the original (unsorted) DataFrame
+print(df_sort)
+
+
+# ----------------------------------------------------
+# Sorting rows based on column values
+# ----------------------------------------------------
+
+# Sort the DataFrame by the 'star_rating' column in ascending order (default)
+# This returns a NEW DataFrame; the original df_sort remains unchanged
+print(df_sort.sort_values(by=["star_rating"]))
+
+# Sort the DataFrame by 'star_rating' in descending order
+# ascending=False reverses the sort order
+# This also returns a NEW DataFrame
+print(df_sort.sort_values(by=["star_rating"], ascending=False))
+
+
+# ----------------------------------------------------
+# Sorting in-place
+# ----------------------------------------------------
+
+# Sort the DataFrame by 'star_rating' in descending order
+# inplace=True modifies the original DataFrame directly and returns None
+df_sort.sort_values(by=["star_rating"], ascending=False, inplace=True)
+
+# Print the DataFrame after in-place sorting
+print(df_sort)
+
+
+# ----------------------------------------------------
+# Sorting by index
+# ----------------------------------------------------
+
+# Sort the DataFrame based on index labels
+# This returns a NEW DataFrame; df_sort is not modified
+print(df_sort.sort_index())
+
+
+# ----------------------------------------------------
+# Resetting the index
+# ----------------------------------------------------
+
+# Reset the index and convert the old index into a new column named 'index'
+# This returns a NEW DataFrame
+print(df_sort.reset_index())
+
+# Reset the index and DROP the old index completely
+# A fresh default zero-based index is assigned
+# This returns a NEW DataFrame
+print(df_sort.reset_index(drop=True))
+
+
+
