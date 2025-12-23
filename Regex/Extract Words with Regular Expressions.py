@@ -1,7 +1,7 @@
 import re
 
 # Read a single line of input from the user
-inp = "Python's Programming: is very easy to learn"
+inp = "Python's Programming: is very easy to learn" 
 
 # Regular expression explanation:
 # [A-Za-z]  -> matches any ASCII letter (uppercase A–Z or lowercase a–z)
