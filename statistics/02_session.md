@@ -61,6 +61,8 @@ Useful for categorical data (e.g., gender, product type)
 
 Outliers are values that are significantly different from the rest of the data.
 
+An outlier is a data value that is much smaller or much larger than most of the other values in a dataset.
+
 **Example:**
 Data: 10, 12, 11, 13, 100
 Outlier = 100
@@ -84,3 +86,21 @@ Why outliers matter:
 Can distort the mean
 
 May indicate errors or rare but important events
+
+#### Why outliers matter
+
+- They can distort results, especially the mean
+
+They may indicate:
+
+- Data entry errors
+
+- Measurement errors
+
+- Rare but important events
+
+**Example:**
+
+Salaries: 30k, 32k, 35k, 38k, 5 crore
+
+The mean becomes misleading, but the median stays realistic.
