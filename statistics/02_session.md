@@ -104,3 +104,20 @@ They may indicate:
 Salaries: 30k, 32k, 35k, 38k, 5 crore
 
 The mean becomes misleading, but the median stays realistic.
+
+| Measure | Effect of Outliers |
+| ------- | ------------------ |
+| Mean    | Strongly affected  |
+| Median  | Not affected       |
+| Mode    | Not affected       |
+
+
+**Types of outliers**
+
+- Global outliers – extreme compared to all data
+
+- Contextual outliers – unusual in a specific context
+
+    Example: 40°C in winter
+
+- Collective outliers – a group of unusual values
