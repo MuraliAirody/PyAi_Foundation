@@ -50,4 +50,4 @@ Confidence intervals
 Regression analysis
 
 Example:
-“Based on a sample of 1,000 voters, we predict the election result with 95% confidence.”
+“Based on a sample of 1,000 voters, we predict the election result with 95% confidence”
